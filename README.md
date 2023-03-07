@@ -31,5 +31,24 @@ So, standard library calls this function and the data is received in the pointer
 
 diverting the pointer content to our function ITM_SendChar. this function writes into the FIFO and from FIFO it comes over the SWO line all the way back to the ST-LINK circuitry and from there it comes to our PC. And our IDE captures that message and it can print it on the console.
 ***********************************
-For debugg cand IDE configuration,
+For debugg and IDE configuration, first connect your board to the computer and then do the following steps :
+
+1- Build the project.
+
+2- Verify the debug configuration. make sure that SWV is selected. So, if you don't select this then your IDE will not capture the message coming over SWO line.
+
+3- Debug the code.
+
+4- Go to window, show view, SWV --> ITM data console. open this.
+
+5- Click on configure trace. ITM stimulus ports --> select port 0, because the ITM SendChar function is going to write into the ITM stimulus port 0.So, there are up to 32 ports, but we are making use of the 0th port. Once you select that, click OK.
+
+6- start the trace (the red circle icone).
+
+7-run the code (Resume because we are in debugger mode)
+
+
+
+That it we get the message 'Hello world'. So, printf is actually an excellent option to debug your code.
+So, when you are writing your embedded code in case if you want to use printf to get the debug messages, then definitely you can make use of this feature of the processor.
 
